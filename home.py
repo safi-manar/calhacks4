@@ -9,8 +9,9 @@ from flask_sqlalchemy import SQLAlchemy
 home = Flask(__name__)
 home.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(home)
-db.create_all()
 from photo_unit import PhotoUnit
+db.create_all()
+db.session.commit()
 
 @home.route('/', methods=['GET'])
 def verify():
@@ -25,18 +26,18 @@ def add_photo():
 
     temp_unit = PhotoUnit("source string example", "translated string example", photo)
     db.session.add(temp_unit)
-    db.session.commit()
+    # db.session.commit()
     return temp_unit.to_json()
 
-@home.route('/api/v1/photo/<int:id>', methods=['DELETE'])
+@home.route('/api/v1/photo/<id>', methods=['DELETE'])
 def delete_photo(id):
-    PhotoUnit.query.filter(id=id).delete()
+    PhotoUnit.query.filter(uuid=id).delete()
     db.session.commit()
 
-@home.route('/api/v1/photo/<int:id>', methods=['GET'])
+@home.route('/api/v1/photo/<id>', methods=['GET'])
 def get_photo_unit(id):
     # Query database and return PhotoUnit object in JSON body.
-    return PhotoUnit.query.filter_by(id=id).first().to_json()
+    return PhotoUnit.query.filter_by(uuid=id).first().to_json()
 
 
 @home.route('/api/v1/photo/all', methods=['GET'])
