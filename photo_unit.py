@@ -19,7 +19,7 @@ class PhotoUnit:
         return '<PhotoUnit %r>' % self.id
 
     def to_json(self):
-        return jsonify(id=id,
+        return jsonify(id=self.id,
                        source_string=self.source_string,
                        trans_string=self.trans_string,
                        photo=self.photo)
