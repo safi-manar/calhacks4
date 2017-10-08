@@ -19,7 +19,7 @@ def verify():
 @home.route('/api/v1/photo', methods=['POST'])
 def add_photo():
     #
-    photo = request.json['photo']
+    photo = request.get_json()['photo']
     # Do a bunch of google api calls here and then save to database.
     temp_unit = PhotoUnit("source string example", "translated string example", "\x00\x26\x26")
     return temp_unit.to_json()
