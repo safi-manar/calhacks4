@@ -20,6 +20,6 @@ class PhotoUnit:
 
     def to_json(self):
         return jsonify(id=id,
-                       source_string=source_string,
-                       trans_string=trans_string,
-                       photo=photo)
+                       source_string=self.source_string,
+                       trans_string=self.trans_string,
+                       photo=self.photo)
