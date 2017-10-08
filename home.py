@@ -3,6 +3,7 @@ import sys
 import json
 
 import requests
+import base64
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 home = Flask(__name__)
@@ -19,9 +20,10 @@ def verify():
 @home.route('/api/v1/photo', methods=['POST'])
 def add_photo():
     #
-    photo = request.get_json()['photo']
+    photo = base64.decodestring(request.get_json()['photo'])
     # Do a bunch of google api calls here and then save to database.
-    temp_unit = PhotoUnit("source string example", "translated string example", "\x01\x26\x26")
+
+    temp_unit = PhotoUnit("source string example", "translated string example", photo)
     db.session.add(temp_unit)
     db.session.commit()
     return temp_unit.to_json()

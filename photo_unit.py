@@ -25,4 +25,4 @@ class PhotoUnit(db.Model):
         return jsonify(id=self.id,
                        source_string=self.source_string,
                        trans_string=self.trans_string,
-                       photo=self.photo)
+                       uuid=self.uuid)
