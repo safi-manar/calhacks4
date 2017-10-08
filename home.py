@@ -8,6 +8,6 @@ from flask import Flask, request
 home = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
+@home.route('/', methods=['GET'])
 def verify():
     return "Hello world", 200
