@@ -5,12 +5,11 @@ import json
 import requests
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
-from photo_unit import PhotoUnit
-
 home = Flask(__name__)
 home.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(home)
 
+from photo_unit import PhotoUnit
 
 @home.route('/', methods=['GET'])
 def verify():
