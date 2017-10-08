@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 home = Flask(__name__)
 home.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(home)
-
+db.create_all()
 from photo_unit import PhotoUnit
 
 @home.route('/', methods=['GET'])
