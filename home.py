@@ -22,6 +22,8 @@ def add_photo():
     photo = request.get_json()['photo']
     # Do a bunch of google api calls here and then save to database.
     temp_unit = PhotoUnit("source string example", "translated string example", "\x00\x26\x26")
+    db.session.add(temp_unit)
+    db.session.commit()
     return temp_unit.to_json()
 
 @home.route('/api/v1/photo/<int:id>', methods=['DELETE'])
