@@ -1,13 +1,25 @@
-from home import db
+import home
+from flask import jsonify
 
-class PhotoUnit:
+db = home.db
+
+class PhotoUnit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    email = db.Column(db.String(120), unique=True)
+    source_string = db.Column(db.String(120))
+    trans_string = db.Column(db.String(120))
+    photo = db.Column(db.String(10000))
 
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
+    def __init__(self, source_string, trans_string, photo):
+        self.source_string = source_string
+        self.trans_string = trans_string
+        self.photo = photo
+
 
     def __repr__(self):
-        return '<Name %r>' % self.name
+        return '<PhotoUnit %r>' % self.id
+
+    def to_json(self):
+        return jsonify(id=self.id,
+                       source_string=self.source_string,
+                       trans_string=self.trans_string,
+                       photo=self.photo)
