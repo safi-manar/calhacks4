@@ -2,6 +2,10 @@
 ###################
 .idea
 
+# Build / Deployment #
+###################
+venv
+
 # Compiled source #
 ###################
 *.com
