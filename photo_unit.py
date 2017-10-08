@@ -1,5 +1,7 @@
-from home import db
+import home
 from flask import jsonify
+
+db = home.db
 
 class PhotoUnit:
     id = db.Column(db.Integer, primary_key=True)
