@@ -25,12 +25,12 @@ def add_photo():
     return temp_unit.to_json()
 
 @home.route('/api/v1/photo/<int:id>', method=['DELETE'])
-def delete_photo():
+def delete_photo(id):
     PhotoUnit.query.filter(id=id).delete()
     db.session.commit()
 
 @home.route('/api/v1/photo/<int:id>', methods=['GET'])
-def get_photo_unit():
+def get_photo_unit(id):
     # Query database and return PhotoUnit object in JSON body.
     return PhotoUnit.query.filter_by(id=id).first().to_json()
 
