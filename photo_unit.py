@@ -1,7 +1,9 @@
 import home
+import json
 from flask import jsonify
 import uuid
 import storage_client
+import vision_client
 
 db = home.db
 
@@ -15,10 +17,9 @@ class PhotoUnit(db.Model):
         self.trans_string = trans_string
         self.uuid = str(uuid.uuid4())  # generate uuid
         storage_client.upload_image(photo, self.uuid)
+        labels = json.dumps(vision_client.send_image(self.uuid))
+        # to unlabel, use json.loads("string")
         # use the photo, upload to Google
-
-
-
 
     def __repr__(self):
         return '<PhotoUnit %r>' % self.id
