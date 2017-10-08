@@ -15,7 +15,8 @@ GCP_CLIENT_ID = os.environ["gcp_client_id"]
 GCP_TOKEN_URI = os.environ["gcp_token_uri"]
 # Other GCP Strings
 GCP_SCOPE = 'https://www.googleapis.com/auth/cloud-platform'
-
+CLOUD_STORAGE_BUCKET = os.environ['CLOUD_STORAGE_BUCKET']
+CONTENT_TYPE = 'image/jpeg'
 
 # TODO Delete?
 #vision_api_url="https://vision.googleapis.com/v1/images:annotate?key=" + os.environ['VISION_API_KEY']
