@@ -12,8 +12,9 @@ def upload_image(image, uuid):
 
 
 def _get_client():
-    creds = gcp_credentials.get_credentials()
-    client = storage.Client(credentials=creds)
+    creds, keyfile_dict = gcp_credentials.get_credentials(with_keyfile=True)
+    project = keyfile_dict['project_id']
+    client = storage.Client(project=project, credentials=creds)
     return client
 
 
