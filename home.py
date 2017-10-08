@@ -22,7 +22,7 @@ def add_photo():
     photo = request.get_json()['photo']
     # Do a bunch of google api calls here and then save to database.
     temp_unit = PhotoUnit("source string example", "translated string example", "\x00\x26\x26")
-    return temp_unit
+    return temp_unit.to_json()
 
 @home.route('/api/v1/photo/<int:id>', methods=['DELETE'])
 def delete_photo(id):
@@ -35,4 +35,6 @@ def get_photo_unit(id):
     return PhotoUnit.query.filter_by(id=id).first().to_json()
 
 
-
+@home.route('/api/v1/photo/all', methods=['GET'])
+def get_all_photo_units():
+    return [x.to_json() for x in PhotoUnit.query.all()]
