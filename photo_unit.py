@@ -3,7 +3,7 @@ from flask import jsonify
 
 db = home.db
 
-class PhotoUnit:
+class PhotoUnit(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     source_string = db.Column(db.String(120))
     trans_string = db.Column(db.String(120))
