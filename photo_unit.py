@@ -1,6 +1,7 @@
 import home
 from flask import jsonify
 import uuid
+import storage_client
 
 db = home.db
 
@@ -12,8 +13,10 @@ class PhotoUnit(db.Model):
     def __init__(self, source_string, trans_string, photo):
         self.source_string = source_string
         self.trans_string = trans_string
+        self.uuid = str(uuid.uuid4())  # generate uuid
+        storage_client.upload_image(photo, self.uuid)
         # use the photo, upload to Google
-        self.uuid = str(uuid.uuid4())   #generate uuid
+
 
 
 
