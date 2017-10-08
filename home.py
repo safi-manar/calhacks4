@@ -24,7 +24,7 @@ def add_photo():
     temp_unit = PhotoUnit("source string example", "translated string example", "\x00\x26\x26")
     return temp_unit.to_json()
 
-@home.route('/api/v1/photo/<int:id>', method=['DELETE'])
+@home.route('/api/v1/photo/<int:id>', methods=['DELETE'])
 def delete_photo(id):
     PhotoUnit.query.filter(id=id).delete()
     db.session.commit()
