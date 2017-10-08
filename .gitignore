@@ -5,6 +5,7 @@
 # Build / Deployment #
 ###################
 venv
+secret_env.py
 
 # Compiled source #
 ###################
