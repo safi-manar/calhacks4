@@ -1,8 +1,8 @@
 from google.cloud import vision
 from google.cloud.vision import types
 
-import logger
 import gcp_credentials
+import logger
 
 
 def send_image(content):
