@@ -2,10 +2,11 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 import gcp_credentials
+import constants
 import logger
 
 
-def send_image(content):
+def send_image(image_uuid):
     """
         content = a Base64 encoded image string
     """
@@ -21,7 +22,10 @@ def send_image(content):
     #     content = image_file.read()
 
 
-    image = types.Image(content=content)
+
+    image_uri = "gs://{bucket_name}/{uuid}".format(bucket_name=constants.CLOUD_STORAGE_BUCKET, uuid=image_uuid)
+    image_source = types.ImageSource(image_uri=image_uri)
+    image = types.Image(source=image_source)
 
     # Performs label detection on the image file
 
