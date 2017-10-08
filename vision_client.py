@@ -33,10 +33,12 @@ def send_image(image_uuid):
     labels = response.label_annotations
 
     logger.log('Labels:')
+    labels_list = []
     for label in labels:
         logger.log(label.description)
+        labels_list.append(str(label.description))
 
-    return
+    return labels_list
 
 
 def _get_client():
