@@ -1,7 +1,9 @@
-import constants
-from google.oauth2 import service_account
 
-#import secret_env # Uncomment this for local debugging.
+from google.oauth2 import service_account
+#import secret_env # Uncomment this for local debugging. Must come BEFORE import constants.
+import constants
+
+
 
 # A module to return the GCP credentials.
 
