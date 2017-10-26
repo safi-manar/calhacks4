@@ -55,7 +55,7 @@ class PhotoUnit(db.Model):
         trans_labels = self.get_trans_labels()
         # Labels are in english by default.
         if lang == 'en':
-            return self.labels
+            return self.get_labels()
         # If translation already exists, use it.
         elif lang in trans_labels:
             return trans_labels[lang]

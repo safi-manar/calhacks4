@@ -37,7 +37,7 @@ def delete_photo(id):
     PhotoUnit.query.filter(uuid=id).delete()
     db.session.commit()
 
-@home.route('/api/v1/photo/<id>', methods=['GET'])
+@home.route('/api/v1/photo/<id>/translation', methods=['GET'])
 def get_photo_unit(id):
     """
     :param id:
