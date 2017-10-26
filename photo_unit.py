@@ -8,9 +8,9 @@ import vision_client
 db = home.db
 
 class PhotoUnit(db.Model):
-    labels = db.Column(db.String(120))
-    trans_labels = db.Column(db.String(120))
-    uuid = db.Column(db.String(120),  primary_key=True)
+    labels = db.Column(db.Text)
+    trans_labels = db.Column(db.Text)
+    uuid = db.Column(db.String(40),  primary_key=True)
 
     def __init__(self, photo):
         self.uuid = str(uuid.uuid4())  # generate uuid
