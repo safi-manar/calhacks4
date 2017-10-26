@@ -19,7 +19,7 @@ A CalHacks 4.0 project. Uses Google Cloud APIs to store and annotate user-upload
   }
   ```
 ### DELETE /api/v1/photo/\<id>
-### GET /api/v1/photo/\<id>
+### GET /api/v1/photo/\<id>/translation
 - Optional query parameters. For full list of languages, see [here](https://cloud.google.com/translate/docs/languages).
   - `source`: Source language, e.g. en
   - `target`: Target language, e.g. fr
