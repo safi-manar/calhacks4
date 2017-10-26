@@ -2,6 +2,11 @@
 ###################
 .idea
 
+# Build / Deployment #
+###################
+venv
+secret_env.py
+
 # Compiled source #
 ###################
 *.com
@@ -10,6 +15,7 @@
 *.exe
 *.o
 *.so
+*.pyc
 
 # Packages #
 ############
