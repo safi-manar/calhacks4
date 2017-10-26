@@ -36,8 +36,16 @@ def delete_photo(id):
 
 @home.route('/api/v1/photo/<id>', methods=['GET'])
 def get_photo_unit(id):
+    """
+    :param id:
+    :return:
+    """
     # Query database and return PhotoUnit object in JSON body.
-    return PhotoUnit.query.filter_by(uuid=id).first().to_json()
+    source = request.args.get('source')
+    target = request.args.get('target')
+    response = PhotoUnit.query.filter_by(uuid=id).first().get_translation_response(source, target)
+
+    return response.to_json()
 
 
 @home.route('/api/v1/photo/all', methods=['GET'])
