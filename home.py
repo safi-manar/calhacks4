@@ -26,7 +26,7 @@ def add_photo():
 
     temp_unit = PhotoUnit(photo)
     db.session.add(temp_unit)
-    # db.session.commit()
+    db.session.commit()
     return temp_unit.to_json()
 
 @home.route('/api/v1/photo/<id>', methods=['DELETE'])
