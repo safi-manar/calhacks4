@@ -41,8 +41,8 @@ def get_photo_unit(id):
     :return:
     """
     # Query database and return PhotoUnit object in JSON body.
-    source = request.args.get('source')
-    target = request.args.get('target')
+    source = request.args.get('source', default='en')
+    target = request.args.get('target', default='en')
     response = PhotoUnit.query.filter_by(uuid=id).first().get_translation_response(source, target)
 
     return response.to_json()
