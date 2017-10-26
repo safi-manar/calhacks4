@@ -6,9 +6,9 @@ import constants
 import logger
 
 
-def send_image(image_uuid):
+def vision_labels(image_uuid):
     """
-        content = a Base64 encoded image string
+        image_uuid = The uuid name of an image stored on the GCP Storage.
     """
 
 
@@ -32,10 +32,8 @@ def send_image(image_uuid):
     response = client.label_detection(image=image)
     labels = response.label_annotations
 
-    logger.log('Labels:')
     labels_list = []
     for label in labels:
-        logger.log(label.description)
         labels_list.append(str(label.description))
 
     return labels_list
