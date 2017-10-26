@@ -5,7 +5,7 @@ import gcp_credentials
 
 TRANSLATED_TEXT_LABEL = 'translatedText'
 
-def translate_text(labels, target='en', source='en'):
+def translate_text(labels, source='en', target='en'):
     """
     :param labels: Either a str or a list of strings
     :param target:
