@@ -4,6 +4,7 @@ from flask import jsonify
 import uuid
 import storage_client
 import vision_client
+import translation_client
 
 db = home.db
 
@@ -16,8 +17,6 @@ class PhotoUnit(db.Model):
         self.uuid = str(uuid.uuid4())  # generate uuid
         self.upload_image(photo)
         self.labels = self.generate_labels()
-        self.trans_labels = self.translate_labels()
-
 
 
     def __repr__(self):
@@ -39,16 +38,27 @@ class PhotoUnit(db.Model):
         labels_string = self.labels
         return json.loads(labels_string)
 
-    # Return a string representation of the translated labels list.
-    def translate_labels(self):
-        labels = self.get_labels()
-        #  TODO   Translate the labels here using translate_client.
-        return "[translated, labels]"
+    # Given a target language, update the local translation dictionary, and return a list of the labels translated
+    #   in the target language.
+    def translate_labels(self, target_lang):
+        target_labels = translation_client.translate_text(self.get_labels(), target_lang)
 
-    # Return the translated labels in the format of a list.
+        trans_labels = self.get_trans_labels()
+        trans_labels[target_lang] = target_labels
+        # Update the trans_labels
+        self.trans_labels = json.dumps(trans_labels)
+
+        return target_labels
+
+    # Return the translated labels in the format of a dictionary, if it exists, elese an empty dictionary.
     def get_trans_labels(self):
-        trans_labels_string = self.trans_labels
-        return json.loads(trans_labels_string)
+        if self.trans_labels:
+            # A dictionary already exists. Get it.
+            trans_labels_string = self.trans_labels
+            return json.loads(trans_labels_string)
+        else:
+            # No translation has been made yet. Return an empty dictionary.
+            return {}
 
 
     def to_json(self):
