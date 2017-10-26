@@ -46,6 +46,8 @@ def get_photo_unit(id):
     # Query database and return PhotoUnit object in JSON body.
     source = request.args.get('source', default='en')
     target = request.args.get('target', default='en')
+    print("Source", source)
+    print("Target", target)
     # response = PhotoUnit.query.filter_by(uuid=id).first().get_translation_response(source, target)
     response = PhotoUnit.query.get(id).get_translation_response(source, target)
     db.session.commit()
