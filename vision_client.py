@@ -6,9 +6,9 @@ import constants
 import logger
 
 
-def send_image(image_uuid):
+def vision_labels(image_uuid):
     """
-        content = a Base64 encoded image string
+        image_uuid = The uuid name of an image stored on the GCP Storage.
     """
 
 
