@@ -1,5 +1,5 @@
 from google.cloud import translate
-import secret_env
+#import secret_env
 
 import gcp_credentials
 
