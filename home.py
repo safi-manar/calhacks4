@@ -24,7 +24,7 @@ def add_photo():
     photo = base64.decodestring(request.get_json()['photo'])
     # Do a bunch of google api calls here and then save to database.
 
-    temp_unit = PhotoUnit("source string example", "translated string example", photo)
+    temp_unit = PhotoUnit(photo)
     db.session.add(temp_unit)
     # db.session.commit()
     return temp_unit.to_json()
@@ -43,7 +43,9 @@ def get_photo_unit(id):
     # Query database and return PhotoUnit object in JSON body.
     source = request.args.get('source', default='en')
     target = request.args.get('target', default='en')
-    response = PhotoUnit.query.filter_by(uuid=id).first().get_translation_response(source, target)
+    # response = PhotoUnit.query.filter_by(uuid=id).first().get_translation_response(source, target)
+    response = PhotoUnit.query.get(id).get_translation_response(source, target)
+    db.session.commit()
 
     return response.to_json()
 

@@ -79,9 +79,7 @@ class PhotoUnit(db.Model):
 
 
     def to_json(self):
-        return jsonify(source_string=self.source_string,
-                       trans_string=self.trans_string,
-                       uuid=self.uuid)
+        return jsonify(uuid=self.uuid)
 
 
 class TranslationResponse:
