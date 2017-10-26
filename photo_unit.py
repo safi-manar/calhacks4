@@ -39,9 +39,11 @@ class PhotoUnit(db.Model):
         return json.loads(labels_string)
 
 
-    # Given a target language, return you
+    # Given a target language, return a TranslationResponse object containing the source and target labels.
+    #   If the target language does not already exist in the trans_labels dictionary, then translate_labels()
+    #   will translate the labels via an API call and update the local state.
     def get_translation_response(self, target_lang, source_lang='en'):
-        # If target translation already exists, return it.
+        # If target translation already exists, use it.
         trans_labels = self.get_trans_labels()
         if target_lang in trans_labels:
             target_labels = trans_labels[target_lang]
