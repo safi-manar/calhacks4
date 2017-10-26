@@ -58,7 +58,7 @@ class PhotoUnit(db.Model):
     # Given a target language, update the local translation dictionary, and return a list of the labels translated
     #   in the target language.
     def translate_labels(self, target_lang):
-        target_labels = translation_client.translate_text(self.get_labels(), target_lang)
+        target_labels = translation_client.translate_text(self.get_labels(), target=target_lang)
 
         trans_labels = self.get_trans_labels()
         trans_labels[target_lang] = target_labels
